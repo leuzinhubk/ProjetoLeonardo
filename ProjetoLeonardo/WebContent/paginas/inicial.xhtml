@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Loja Luxúria</title>
+<h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+	<h:form>
+		<h:panelGrid columns="2" class="painel"> 
+			<h:outputLabel value="Nome da Loja:" />
+			<h:inputText value="#{lojaBean.loja.nome}" />
+			
+			<h:outputLabel value="Produto:" />
+			<h:selectOneListbox value="#{lojaBean.loja.produto}" size="1">
+				<f:selectItems value="#{persistenciaProduto.findAll()}" var="produtos" 
+				itemValue="#{produtos.nome}" itemLabel="#{produtos.nome}"/>
+			</h:selectOneListbox>
+
+			<h:outputLabel value="Valor:" />
+			<h:inputText value="#{lojaBean.loja.valor}" />
+			
+			<h:commandButton rendered="#{not lojaBean.update}" class="botao blue" value="VENDER" action="#{persistenciaLoja.gravar(lojaBean.loja)}" />
+			<h:commandButton rendered="#{lojaBean.update}" class="botao blue" value="Atualizar" action="#{persistenciaLoja.atualizar(lojaBean.loja)}" >
+				<f:actionListener binding="#{lojaBean.setUpdate(false)}"/>
+			</h:commandButton>
+			<h:commandButton class="botao blue2" value="PRODUTO" action="cadproduto" />
+		</h:panelGrid>
+	</h:form>
+	<h:dataTable value="#{persistenciaLoja.findAll()}" var="loja">
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Nome da Loja:" />
+			</f:facet>
+			<h:outputLabel value="#{loja.nome}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Produto:" />
+			</f:facet>
+			<h:outputLabel value="#{loja.produto}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Valor:" />
+			</f:facet>
+			<h:outputLabel value="#{loja.valor}" />
+		</h:column>
+		<h:column>
+			<h:form>
+				<h:commandLink value="remover" action="#{persistenciaLoja.remover(loja)}"/>				
+			</h:form>
+		</h:column>
+		<h:column>
+			<h:form>
+				<h:commandLink value="atualizar" action="#{lojaBean.setLoja(loja)}">
+					<f:actionListener binding="#{lojaBean.setUpdate(true)}"/>
+				</h:commandLink>
+			</h:form>
+		</h:column>
+	</h:dataTable>
+</h:body>
+</html>

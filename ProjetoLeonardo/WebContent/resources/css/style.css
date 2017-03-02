@@ -1,0 +1,57 @@
+@CHARSET "ISO-8859-1";
+
+body{
+ background-image: url("../resources/img/loja-virtual.jpg");
+ background-size: 60%;
+ background-repeat: no-repeat;
+ background-position: top;
+ border-top: 10px solid transparent;
+ 
+}
+
+.painel{
+	margin-left: auto;
+	margin-right: auto;
+	border-style: solid;
+	border-color: #000000;
+	
+	padding-top: 25px;
+	padding-bottom: 25px;
+	padding-left: 10%;
+	padding-right: 10%;
+	
+	background-color: #c0c0c0;
+	border-radius : 35%;
+}
+
+.botao{
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+	
+	width: 100px;
+	height: 50px;
+	
+	font-size: 20px;
+}
+
+.blue{
+	background-color: #ff0000;
+	border-radius: 15%;
+}
+
+.botao{
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+	
+	width: 100px;
+	height: 50px;
+	
+	font-size: 18px;
+}
+
+.blue2{
+	background-color: #0080ff;
+	border-radius: 15%;
+}
